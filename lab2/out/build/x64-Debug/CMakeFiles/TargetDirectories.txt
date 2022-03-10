@@ -1,6 +1,0 @@
-C:/Users/Admin/Desktop/Studia/EMCPP/Effective_and_modern_CPP/lab2/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
-C:/Users/Admin/Desktop/Studia/EMCPP/Effective_and_modern_CPP/lab2/out/build/x64-Debug/CMakeFiles/DynamicContainer.dir
-C:/Users/Admin/Desktop/Studia/EMCPP/Effective_and_modern_CPP/lab2/out/build/x64-Debug/CMakeFiles/StaticContainer.dir
-C:/Users/Admin/Desktop/Studia/EMCPP/Effective_and_modern_CPP/lab2/out/build/x64-Debug/CMakeFiles/StaticContainer2.dir
-C:/Users/Admin/Desktop/Studia/EMCPP/Effective_and_modern_CPP/lab2/out/build/x64-Debug/CMakeFiles/edit_cache.dir
-C:/Users/Admin/Desktop/Studia/EMCPP/Effective_and_modern_CPP/lab2/out/build/x64-Debug/CMakeFiles/String.dir
