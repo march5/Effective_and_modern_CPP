@@ -127,8 +127,6 @@ public:
 
     ~Matrix() {
         delete[] data;
-
-        cout << "Destructor" << endl;
     }
 
 protected:
