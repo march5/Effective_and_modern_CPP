@@ -2,6 +2,12 @@
 //-------------------------------------------
 /// ADD FORWARD DECLARATIONS HERE
 
+template<typename T, typename S>
+class Pair;
+
+template<typename T, typename S>
+std::ostream& operator<<(std::ostream&, const Pair<T, S>&);
+
 //-------------------------------------------
 // DO NOT CHANGE CLASS Pair
 template <typename T, typename S>
@@ -11,21 +17,43 @@ class Pair {
     static int numberOfPair;
 public:
     Pair(T first, S second);                // Constructor, increases numberOfPairs
-    //template <typename P, typename R>
-    //explicit Pair(const Pair<P, R>& pair);  // Converting constructor, increases numberOfPairs
-    //~Pair();                                // Destructor, decreases numberOfPair
+    template <typename P, typename R>
+    explicit Pair(const Pair<P, R>& pair);  // Converting constructor, increases numberOfPairs
+    ~Pair();                                // Destructor, decreases numberOfPair
     constexpr T getFirst() const;           // returns first, mark it inline
     constexpr S getSecond() const;          // returns second, mark it inline
-    //constexpr Pair<S, T> reverse() const;    // returns a reversed Pair
+    constexpr Pair<S, T> reverse() const;    // returns a reversed Pair
     constexpr static int getNumberOfPairs();// return the number of existing objects of Pair<T,S>
     // friend declaration with single template function operator<<(std::ostream, const Pair<T,S> &)
-    //friend std::ostream& operator<< <>(std::ostream& out, const Pair& pair);
+    friend std::ostream& operator<< <>(std::ostream& out, const Pair& pair);
     // friend declaration with class template (any Pair<P,R>)
-    //template <typename, typename>
-    //friend class Pair;
+    template <typename, typename>
+    friend class Pair;
 };
 //-------------------------------------------
 /// IMPLEMENTATION SECTION: Implement methods here
+
+template<typename T, typename S>
+Pair<T,S>::~Pair(){
+    numberOfPair--;
+}
+
+template<typename T, typename S>
+template<typename P, typename R>
+Pair<T, S>::Pair(const Pair<P, R>& pair) : first((T)pair.getFirst()), second((S)pair.getSecond()) {
+    numberOfPair++;
+}
+
+template<typename T, typename S>
+constexpr Pair<S, T> Pair<T, S>::reverse() const{
+    Pair<S,T> *ret = new Pair<S, T>( this->second, this->first );
+    return *ret;
+}
+
+template<typename T, typename S>
+std::ostream& operator<<(std::ostream& os, const Pair<T, S>& obj) {
+    return os << "(" << obj.getFirst() << ", " << obj.getSecond() << ")";
+}
 
 template<typename T, typename S>
 int Pair<T,S>::numberOfPair = 0;
@@ -52,19 +80,21 @@ constexpr int Pair<T,S>::getNumberOfPairs() {
 
 //-------------------------------------------
 using namespace std;
-int main() {
+int main1() {
 
     Pair<int, double> p{ 1, 3.1415 };
     cout << p.getFirst() << " " << p.getSecond() << endl;
-    /*cout << p << endl;
+    cout << p << endl;
     auto p2 = p.reverse();
     cout << p2 << endl;
     {
-        Pair<int, int> p3(p)
+        Pair<int, int> p3(p);
             cout << p3 << endl;
         cout << Pair<int, int>::getNumberOfPairs() << endl; 
     }
-    cout << Pair<int, int>::getNumberOfPairs() << endl;*/
+    cout << Pair<int, int>::getNumberOfPairs() << endl;
+
+    return 0;
 }
 /** Expected output
 1 3.1415
